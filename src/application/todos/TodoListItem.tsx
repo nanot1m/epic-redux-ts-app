@@ -1,5 +1,5 @@
 import * as React from "react";
-import { IState } from "../store/reducer";
+import { IState } from "../reducer";
 import { connect } from "react-redux";
 import * as todoActions from "./actions";
 import { getTodo } from "./selectors";
@@ -24,11 +24,11 @@ const enhancer = connect(
 export const TodoListItem = enhancer(
   ({ todo, toggleTodo, removeTodo }) =>
     todo ? (
-      <ListItem button onClick={() => toggleTodo(todo.id)}>
+      <ListItem button onClick={() => toggleTodo({ id: todo.id })}>
         <Checkbox checked={todo.completed} tabIndex={-1} disableRipple />
         <ListItemText primary={todo.text} />
         <ListItemSecondaryAction>
-          <IconButton onClick={() => removeTodo(todo.id)}>
+          <IconButton onClick={() => removeTodo({ id: todo.id })}>
             <Icon>delete</Icon>
           </IconButton>
         </ListItemSecondaryAction>

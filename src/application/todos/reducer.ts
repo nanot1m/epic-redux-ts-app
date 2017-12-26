@@ -1,6 +1,6 @@
 import { Map } from "immutable";
 import { ITodo, Todo, TodoUtils } from "./Todo";
-import { IActions } from "../store/actions";
+import { IActions } from "../actions";
 
 export type ITodoState = Map<string, ITodo>;
 
@@ -19,7 +19,7 @@ export const todoReducer = (
         Todo({ id: action.payload.id, text: action.payload.text })
       );
 
-    case "todos/UPDATE_TODO":
+    case "todos/UPDATE":
       return state.update(action.payload.id, todo =>
         TodoUtils.update(todo, action.payload.text)
       );

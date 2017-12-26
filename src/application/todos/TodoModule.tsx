@@ -62,7 +62,7 @@ class InternalTodoModule extends React.Component<Props, State> {
   private _handleSubmit = (ev: React.SyntheticEvent<HTMLFormElement>) => {
     ev.preventDefault();
     if (this.state.text) {
-      this.props.onAddTodo(uuidv1(), this.state.text);
+      this.props.onAddTodo({ id: uuidv1(), text: this.state.text });
       this.setState({ text: "" });
     }
   };

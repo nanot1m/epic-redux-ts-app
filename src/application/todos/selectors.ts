@@ -1,7 +1,7 @@
 import { ITodo } from "./Todo";
 import { Seq } from "immutable";
-import { IState } from "../store/reducer";
-import { getTodosState } from "../store/selectors";
+import { IState } from "../reducer";
+import { getTodosState } from "../selectors";
 
 export const getAllTodos = (state: IState): Seq.Indexed<string> =>
   getTodosState(state).keySeq();

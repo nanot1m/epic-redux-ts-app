@@ -1,5 +1,5 @@
 import { Record } from "immutable";
-import { todoReducer, todosInitialState } from "../todos/reducer";
+import { todoReducer, todosInitialState } from "./todos/reducer";
 import { IActions } from "./actions";
 
 const State = Record({

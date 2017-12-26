@@ -1,7 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { getAllTodos } from "./selectors";
-import { IState } from "../store/reducer";
+import { IState } from "../reducer";
 import { TodoListItem } from "./TodoListItem";
 import List from "material-ui/List/List";
 
