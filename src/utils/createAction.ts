@@ -1,16 +1,10 @@
-export type ReduxAction<Type, Payload> = {
-  type: Type;
-  payload: Payload;
-};
-
-function createAction<Action extends ReduxAction<any, any>>(
-  type: Action["type"]
-): ((
-  payload: Action["payload"]
-) => ReduxAction<Action["type"], Action["payload"]>) {
-  return (payload: Action["payload"]) => {
-    return { type, payload };
-  };
+export interface ReduxAction {
+  readonly type: string;
+  payload: any;
 }
 
-export { createAction };
+export function createAction<Action extends ReduxAction>(Klass: {
+  new (payload: any): Action;
+}) {
+  return (payload: ReduxAction["payload"]) => new Klass(payload);
+}

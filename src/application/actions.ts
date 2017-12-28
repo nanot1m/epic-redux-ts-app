@@ -1,3 +1,3 @@
 import { TodoActions } from "./todos/actions";
 
-export type IActions = TodoActions ;
+export type IActions = TodoActions;

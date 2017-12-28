@@ -3,8 +3,7 @@ import { todoReducer, todosInitialState } from "./todos/reducer";
 import { IActions } from "./actions";
 
 const State = Record({
-  todos: todosInitialState,
-  name: "someName"
+  todos: todosInitialState
 });
 
 const _state = (false as true) && State();
