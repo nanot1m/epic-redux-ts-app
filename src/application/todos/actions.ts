@@ -1,31 +1,17 @@
-import { ReduxAction, createAction } from "../../utils/createAction";
+import { actionCreator, actionType } from "../../utils/createAction";
 
-class AddTodoAction implements ReduxAction {
-  public readonly type = "todos/ADD"
-  constructor(public payload: { id: string; text: string }) {}
-}
-export const addTodo = (payload: AddTodoAction["payload"]) => new AddTodoAction(payload);
-
-class RemoveTodoAction implements ReduxAction {
-  public readonly type = "todos/REMOVE"
-  constructor(public payload: { id: string }) {}
-}
-export const removeTodo = (payload: RemoveTodoAction["payload"]) => new RemoveTodoAction(payload)
-
-class CompleteTodoAction implements ReduxAction {
-  public readonly type = "todos/TOGGLE"
-  constructor(public payload: { id: string }) {}
-}
-export const toggleTodo = (payload: CompleteTodoAction["payload"]) => new CompleteTodoAction(payload)
-
-class UpdateTodoAction implements ReduxAction {
-  public readonly type = "todos/UPDATE"
-  constructor(public payload: { id: string; text: string }) {}
-}
-export const udpateTodo = (payload: UpdateTodoAction["payload"]) => new UpdateTodoAction(payload);
+export class AddTodoAction extends actionType<{id: string, text: string}, "todos/ADD">("todos/ADD") {}
+export class RemoveTodoAction extends actionType<{ id: string }, "todos/REMOVE">("todos/REMOVE") {}
+export class CompleteTodoAction extends actionType<{ id: string }, "todos/TOGGLE">("todos/TOGGLE") {}
+export class UpdateTodoAction extends actionType<{ id: string; text: string }, "todos/UPDATE">("todos/UPDATE") {}
 
 export type TodoActions =
   | AddTodoAction
   | RemoveTodoAction
   | CompleteTodoAction
   | UpdateTodoAction;
+
+export const addTodo = actionCreator(AddTodoAction)
+export const removeTodo = actionCreator(RemoveTodoAction)
+export const toggleTodo = actionCreator(CompleteTodoAction)
+export const udpateTodo = actionCreator(UpdateTodoAction)

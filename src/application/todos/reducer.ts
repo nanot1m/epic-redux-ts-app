@@ -1,6 +1,7 @@
 import { Map } from "immutable";
 import { ITodo, Todo, TodoUtils } from "./Todo";
 import { IActions } from "../actions";
+import { AddTodoAction, UpdateTodoAction, RemoveTodoAction, CompleteTodoAction } from "./actions";
 
 export type ITodoState = Map<string, ITodo>;
 
@@ -13,21 +14,21 @@ export const todoReducer = (
   action: IActions
 ): ITodoState => {
   switch (action.type) {
-    case "todos/ADD":
+    case AddTodoAction.Type:
       return state.set(
         action.payload.id,
         Todo({ id: action.payload.id, text: action.payload.text })
       );
 
-    case "todos/UPDATE":
+    case UpdateTodoAction.Type:
       return state.update(action.payload.id, todo =>
         TodoUtils.update(todo, action.payload.text)
       );
 
-    case "todos/REMOVE":
+    case RemoveTodoAction.Type:
       return state.delete(action.payload.id);
 
-    case "todos/TOGGLE":
+    case CompleteTodoAction.Type:
       return state.update(action.payload.id, TodoUtils.toggle);
 
     default:
