@@ -13,6 +13,13 @@ export function actionType<Payload, Type>(type: Type) {
   return class implements ReduxAction<Type, Payload> {
     static readonly Type = type;
     public readonly type = type;
-    constructor(public payload: Payload) {}
+    constructor(public payload: Payload) {
+      // NOTE: returning plain object as redux is
+      //       not working with class instances
+      return {
+        type,
+        payload
+      };
+    }
   };
 }
